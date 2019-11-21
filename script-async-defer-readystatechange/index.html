@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>title</title>
+<script>
+  window.addEventListener('load', (event) => {
+    console.info('event: load')
+  })
+  document.addEventListener('readystatechange', (event) => {
+    console.info('event: readystatechange', document.readyState)
+  })
+  document.addEventListener('DOMContentLoaded', (event) => {
+    console.info('event: DOMContentLoaded')
+  })
+</script>
+<script src="script-default.js"></script>
+<script src="script-async.js" async></script>
+<script src="script-defer.js" defer></script>
+
+<p>nothing to see here, open dev console..</p>
