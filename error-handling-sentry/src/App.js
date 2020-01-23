@@ -1,24 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ErrorBoundary from './ErrorBoundary.js';
+import TroubleMaker from './TroubleMaker';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <ErrorBoundary>
+        <TroubleMaker suffix="inside" probability={0} />
+      </ErrorBoundary>
+      <TroubleMaker suffix="outside" probability={0} />
     </div>
   );
 }
