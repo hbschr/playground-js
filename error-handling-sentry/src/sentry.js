@@ -1,4 +1,5 @@
 import * as Sentry from "@sentry/browser";
+import HappyIntegration from "./HappyIntegration";
 
 const sentryConfig = {
   dsn: "foo",
@@ -35,7 +36,7 @@ export class SentryLogger {
     this.hub = new Sentry.Hub(
       new Sentry.BrowserClient({
         ...sentryConfig,
-        integrations: clientIntegrations,
+        integrations: [...clientIntegrations, new HappyIntegration()],
         beforeSend (event) {
           console.info("sending", event);
           return event;

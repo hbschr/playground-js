@@ -9,8 +9,8 @@ function App() {
 
   const error = new Error("test error");
 
-  // static
-  staticInit();
+  // // static
+  // staticInit();
   // // manually
   // staticCapture(error);
   // // catchall
@@ -18,10 +18,11 @@ function App() {
   //   throw error;
   // });
 
-  // // client
-  // const logger = new SentryLogger();
+  // client
+  const logger = new SentryLogger();
+  const clientLogger = logger.captureException.bind(logger)
   // // manually
-  // logger.captureException(error);
+  // clientLogger(error);
   // // no catchall
   // new Promise(() => {
   //   throw error;
@@ -32,7 +33,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <ErrorBoundary capture={staticCapture}>
+      <ErrorBoundary capture={clientLogger}>
         <TroubleMaker suffix="inside" probability={0} />
       </ErrorBoundary>
       <TroubleMaker suffix="outside" probability={0} />
