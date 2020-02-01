@@ -3,14 +3,36 @@ import logo from './logo.svg';
 import './App.css';
 import ErrorBoundary from './ErrorBoundary.js';
 import TroubleMaker from './TroubleMaker';
+import { staticInit, staticCapture, SentryLogger } from './sentry';
 
 function App() {
+
+  const error = new Error("test error");
+
+  // static
+  staticInit();
+  // // manually
+  // staticCapture(error);
+  // // catchall
+  // new Promise(() => {
+  //   throw error;
+  // });
+
+  // // client
+  // const logger = new SentryLogger();
+  // // manually
+  // logger.captureException(error);
+  // // no catchall
+  // new Promise(() => {
+  //   throw error;
+  // });
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <ErrorBoundary>
+      <ErrorBoundary capture={staticCapture}>
         <TroubleMaker suffix="inside" probability={0} />
       </ErrorBoundary>
       <TroubleMaker suffix="outside" probability={0} />
